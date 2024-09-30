@@ -1,0 +1,21 @@
+{% extends 'products/base.html' %}
+
+{% block mainpage %}
+
+    <!-- =====================================================
+         Основной Контент (Main Content)
+    ===================================================== -->
+    <div class="main-content" id="mainContent">
+        <!-- Полупрозрачный оверлей с затемнением и размытием -->
+        <div class="overlay">
+            <h1>Лучший семейный магазин</h1>
+            <form action="{% url 'catalog' %}" method="get">
+                <button type="submit" class="shop-button" aria-label="Перейти к покупкам">За покупками</button>
+            </form>
+        </div>
+        <!-- Фоновое изображение -->
+        <div class="background"></div>
+    </div>
+
+{% endblock %}
+

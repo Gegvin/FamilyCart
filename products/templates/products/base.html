@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>FamilyCart - Магазин доставки продуктов</title>
+    <!-- Подключение Google Fonts для красивых шрифтов -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Подключение Font Awesome для иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Подключение внешнего CSS-файла -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <!-- =====================================================
+         Шапка (Header)
+    ===================================================== -->
+    <header>
+        <!-- Левая часть навигации с логотипом и названием -->
+        <div class="nav-left">
+            <!-- Логотип -->
+            <img src="{% static 'fon/logo.png' %}" alt="Логотип" class="logo">
+            <!-- Название магазина -->
+            <a href="{% url 'index' %}" class="nav-title">FamilyCart</a>
+        </div>
+
+        <!-- Правая часть навигации -->
+        <div class="nav-right">
+            <a href="/catalog" class="nav-link"><i class="fas fa-th-large"></i> Каталог</a>
+            <a href="offers.html" class="nav-link"><i class="fas fa-tags"></i> Акции</a>
+            <!-- Иконка пользователя из Font Awesome -->
+            <a href="account.html" class="user-icon" title="Аккаунт">
+                <i class="fas fa-user"></i>
+            </a>
+            <a href="login.html" class="nav-link"><i class="fas fa-sign-in-alt"></i> Войти</a>
+        </div>
+    </header>
+
+{% block mainpage %}  {% endblock %}
+
+    <!-- Подключение Font Awesome (для иконок) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" integrity="sha512-rOA1PnstxnOBLzCLttBBdN5V3Zf4gUGaJb0s6PVF4LyrGXuV0PQbLbwIxZ+Xxk+vBiHc9xVnHoEw5KygCz3h3w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
+</html>

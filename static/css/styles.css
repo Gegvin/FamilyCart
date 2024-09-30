@@ -1,0 +1,241 @@
+/* static/css/styles.css */
+
+/* Общие Стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Стили для Шапки (Header) */
+header {
+    width: 100%;
+    height: 60px; /* Фиксированная высота шапки */
+    background-color: #ffffff;
+    background-image: linear-gradient(to right, #ffffff, #e6e6e6);
+    display: flex;
+    justify-content: space-between; /* Распределение элементов по краям */
+    align-items: center; /* Вертикальное выравнивание по центру */
+    padding: 0 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Левая часть навигации (логотип и название) */
+.nav-left {
+    display: flex;
+    align-items: center;
+}
+
+/* Стили для логотипа */
+.logo {
+    height: 70px; /* Размер логотипа */
+    margin-right: 20px; /* Отступ справа между логотипом и названием */
+    vertical-align: middle;
+}
+
+/* Стили для названия магазина */
+.nav-title {
+    text-decoration: none;
+    color: #28a745; /* Зеленый цвет текста */
+    font-weight: 700;
+    font-size: 1.5em; /* Размер шрифта */
+    transition: color 0.3s;
+}
+
+.nav-title:hover {
+    color: #218838; /* Темно-зеленый при наведении */
+}
+
+/* Правая часть навигации */
+.nav-right {
+    display: flex;
+    align-items: center;
+}
+
+/* Стили для навигационных ссылок */
+.nav-right .nav-link {
+    position: relative;
+    text-decoration: none;
+    color: #333;
+    font-weight: 700;
+    font-size: 14px; /* Размер шрифта */
+    margin-left: 15px; /* Отступ слева */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-right .nav-link i {
+    margin-right: 5px;
+    color: #28a745;
+}
+
+/* Псевдоэлемент для анимации подчеркивания */
+.nav-right .nav-link::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #28a745;
+    transition: width 0.3s;
+    margin-top: 5px;
+}
+
+.nav-right .nav-link:hover::after {
+    width: 100%;
+}
+
+.nav-right .nav-link:hover {
+    background-color: #28a745;
+    color: #ffffff;
+    border-radius: 4px;
+}
+
+/* Стили для иконки пользователя */
+.user-icon {
+    color: #333; /* Цвет иконки */
+    font-size: 1.2em; /* Размер иконки */
+    margin-left: 15px; /* Отступ слева */
+    transform: translateY(-2px); /* Сдвиг вверх */
+    transition: color 0.3s, transform 0.3s;
+    cursor: pointer;
+}
+
+.user-icon:hover {
+    color: #28a745; /* Цвет иконки при наведении */
+    transform: translateY(-2px) scale(1.2); /* Сдвиг и увеличение иконки при наведении */
+}
+
+/* Стили для основного контента страницы */
+.main-content {
+    position: relative;
+    height: calc(100vh - 60px); /* Высота экрана минус высота header */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Чтобы размытие не выходило за пределы */
+}
+
+/* Стили для фонового изображения */
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/static/fon/home.jpg'); /* Путь к фону */
+    background-size: cover;
+    background-position: center;
+    transition: filter 2s ease; /* Плавный переход для размытия */
+    z-index: 0; /* За оверлеем */
+}
+
+/* Стили для оверлея */
+.overlay {
+    position: relative;
+    z-index: 1; /* Поверх фонового изображения */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Затемнение */
+    backdrop-filter: blur(5px); /* Размытие фона */
+}
+
+/* Эффект размытия при наведении на кнопку с использованием :has() */
+/* Убедитесь, что ваш браузер поддерживает :has() */
+.main-content:has(.shop-button:hover) .background {
+    filter: blur(5px);
+    transition: filter 2s ease; /* Плавный переход для размытия */
+}
+
+/* Стили для текста внутри оверлея */
+.overlay h1 {
+    color: #ffffff;
+    font-size: 2.5em; /* Размер шрифта */
+    margin-bottom: 15px; /* Отступ снизу */
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Тень для текста */
+}
+
+/* Стили для кнопки внутри оверлея */
+.overlay button.shop-button {
+    padding: 12px 25px; /* Отступы */
+    font-size: 1em; /* Размер шрифта */
+    background-color: #28a745;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.overlay button.shop-button:hover {
+    background-color: #218838;
+    transform: translateY(-2px); /* Поднятие кнопки при наведении */
+}
+
+/* =====================================================
+   Адаптивные Стили (Responsive Design)
+===================================================== */
+@media (max-width: 768px) {
+    header {
+        height: auto;
+        padding: 10px 20px;
+        flex-direction: column; /* Перевод на колонку для меньших экранов */
+        align-items: center;
+    }
+
+    .nav-left,
+    .nav-right {
+        width: 100%;
+        justify-content: center;
+        margin: 5px 0;
+    }
+
+    .nav-title {
+        font-size: 1.8em;
+    }
+
+    .nav-right .nav-link {
+        font-size: 14px;
+        margin-left: 15px;
+    }
+
+    .overlay h1 {
+        font-size: 2.5em;
+    }
+
+    .overlay button.shop-button {
+        padding: 12px 25px;
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-right .nav-link {
+        font-size: 12px;
+        margin-left: 10px;
+    }
+
+    .nav-title {
+        font-size: 1.5em;
+    }
+
+    .overlay h1 {
+        font-size: 2em;
+    }
+
+    .overlay button.shop-button {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+}

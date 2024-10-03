@@ -239,3 +239,127 @@ header {
         font-size: 0.9em;
     }
 }
+
+/* catalog.html specific styles */
+
+/* Контейнер каталога */
+.catalog-container {
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+}
+
+/* Боковая панель категорий */
+.categories-sidebar {
+    width: 250px;
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.categories-sidebar h2 {
+    margin-bottom: 15px;
+    color: #28a745;
+    font-size: 1.5em;
+    border-bottom: 2px solid #28a745;
+    padding-bottom: 5px;
+}
+
+.categories-sidebar ul {
+    list-style: none;
+}
+
+.categories-sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.categories-sidebar ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.categories-sidebar ul li a:hover {
+    color: #28a745;
+}
+
+/* Секция товаров */
+.products-section {
+    flex: 1;
+}
+
+.products-section h2 {
+    margin-bottom: 20px;
+    color: #28a745;
+    font-size: 1.8em;
+    border-bottom: 2px solid #28a745;
+    padding-bottom: 5px;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+/* Карточка товара */
+.product-card {
+    background-color: #ffffff;
+    border: 1px solid #e6e6e6;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.product-card:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transform: translateY(-5px);
+}
+
+.product-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.product-name {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.product-price {
+    font-size: 1em;
+    color: #28a745;
+    margin-bottom: 10px;
+}
+
+.product-button {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #28a745;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.product-button:hover {
+    background-color: #218838;
+}
+
+/* Адаптивность */
+@media (max-width: 992px) {
+    .catalog-container {
+        flex-direction: column;
+    }
+
+    .categories-sidebar {
+        width: 100%;
+    }
+}

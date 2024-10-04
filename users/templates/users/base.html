@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>FamilyCart - Магазин доставки продуктов</title>
+    <!-- Подключение Google Fonts для красивых шрифтов -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Подключение Font Awesome для иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Подключение внешнего CSS-файла -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <!-- Meta для адаптивности -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <!-- =====================================================
+         Шапка (Header)
+    ===================================================== -->
+    <header>
+        <!-- Левая часть навигации с логотипом и названием -->
+        <div class="nav-left">
+            <!-- Логотип -->
+            <img src="{% static 'fon/logo.png' %}" alt="Логотип" class="logo">
+            <!-- Название магазина -->
+            <a href="{% url 'index' %}" class="nav-title">FamilyCart</a>
+        </div>
+
+        <!-- Правая часть навигации -->
+        <div class="nav-right">
+            <a href="{% url 'catalog' %}" class="nav-link"><i class="fas fa-th-large"></i> Каталог</a>
+            <a href="#" class="nav-link"><i class="fas fa-tags"></i> Акции</a>
+            <!-- Иконка пользователя из Font Awesome -->
+            {% if user.is_authenticated %}
+                <div class="dropdown">
+                    <button class="dropbtn user-icon" title="Аккаунт">
+                        <i class="fas fa-user-circle"></i> {{ user.username }}
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="{% url 'users:login' %}">Профиль</a>
+                        <a href="#">Заказы</a>
+                        <a href="{% url 'users:login' %}">Выйти</a>
+                    </div>
+                </div>
+            {% else %}
+                <a href="{% url 'users:login' %}" class="nav-link"><i class="fas fa-sign-in-alt"></i> Войти</a>
+                <a href="{% url 'users:registration' %}" class="nav-link"><i class="fas fa-user-plus"></i> Регистрация</a>
+            {% endif %}
+        </div>
+    </header>
+
+    <!-- Отображение сообщений (если используются Django сообщения) -->
+    <div class="container">
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="alert {{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Основной Контент -->
+    <div class="container">
+        {% block mainpage %}{% endblock %}
+    </div>
+
+    <!-- =====================================================
+         Подвал (Footer)
+    ===================================================== -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section about">
+                <h3>О нас</h3>
+                <p>
+                    FamilyCart - ваш надёжный партнёр в доставке свежих продуктов прямо к вашей двери.
+                </p>
+                <div class="socials">
+                    <a href="https://vk.com/yourpage" target="_blank"><i class="fab fa-vk"></i></a>
+                    <a href="https://t.me/yourpage" target="_blank"><i class="fab fa-telegram"></i></a>
+                </div>
+            </div>
+            <div class="footer-section links">
+                <h3>Полезные ссылки</h3>
+                <ul>
+                    <li><a href="{% url 'index' %}">Главная</a></li>
+                    <li><a href="{% url 'catalog' %}">Каталог</a></li>
+                    <li><a href="#">Акции</a></li>
+                    <li><a href="{% url 'users:login' %}">Профиль</a></li>
+                </ul>
+            </div>
+            <div class="footer-section contact">
+                <h3>Контакты</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Москва, ул. Примерная, д. 1</li>
+                    <li><i class="fas fa-phone"></i> +7 (495) 123-45-67</li>
+                    <li><i class="fas fa-envelope"></i> info@familycart.ru</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2024 FamilyCart. Все права защищены.
+        </div>
+    </footer>
+
+    <!-- Подключение Font Awesome (для иконок) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" integrity="sha512-rOA1PnstxnOBLzCLttBBdN5V3Zf4gUGaJb0s6PVF4LyrGXuV0PQbLbwIxZ+Xxk+vBiHc9xVnHoEw5KygCz3h3w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
+</html>

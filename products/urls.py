@@ -1,4 +1,5 @@
 # products/urls.py
+from xml.etree.ElementInclude import include
 
 from django.urls import path
 from .views import index, catalog

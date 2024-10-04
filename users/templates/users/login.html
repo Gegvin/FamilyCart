@@ -1,0 +1,41 @@
+<!-- users/templates/users/login.html -->
+
+{% extends 'users/base.html' %}
+
+{% block title %}Вход - FamilyCart{% endblock %}
+
+{% block mainpage %}
+<div class="form-container">
+    <h2>Вход</h2>
+    <form action="{% url 'users:login' %}" method="post" novalidate>
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        {{ form.errors }}
+
+        <div class="form-group">
+            <label for="{{ form.username.id_for_label }}">Имя пользователя</label>
+            {{ form.username }}
+            {% if form.username.errors %}
+                <div class="error">
+                    {{ form.username.errors }}
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.password.id_for_label }}">Пароль</label>
+            {{ form.password }}
+            {% if form.password.errors %}
+                <div class="error">
+                    {{ form.password.errors }}
+                </div>
+            {% endif %}
+        </div>
+
+        <button type="submit" class="btn">Войти</button>
+    </form>
+    <p style="text-align: center; margin-top: 15px;">
+        Нет аккаунта? <a href="{% url 'users:registration' %}">Зарегистрироваться</a>
+    </p>
+</div>
+{% endblock %}

@@ -25,6 +25,7 @@ urlpatterns = [
     path('', index, name='index'),
     path('catalog/', catalog, name='catalog'),
     path('', include('products.urls')),  # Подключите URL-ы из приложения products
+    path('users/', include('users.urls', namespace='users')),
 ]
 
 # Добавьте это в конце файла

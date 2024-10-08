@@ -1,1 +1,44 @@
+<!-- products/templates/products/catalog.html -->
+
 {% extends 'products/base.html' %}
+{% load static %}
+
+{% block mainpage %}
+    <div class="catalog-container">
+        <!-- Боковая панель категорий -->
+        <aside class="categories-sidebar">
+            <h2>Категории</h2>
+            <ul>
+                {% for category in categories %}
+                    <li>
+                        <a href="{% url 'catalog' %}?category={{ category.id }}">
+                            {{ category.name }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </aside>
+
+        <!-- Основная секция с товарами -->
+        <section class="products-section">
+            <h2>Товары</h2>
+            <div class="products-grid">
+                {% for product in products %}
+                    <div class="product-card">
+                        {% if product.image %}
+                            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
+                        {% else %}
+                            <img src="{% static 'images/no-image.png' %}" alt="Нет изображения" class="product-image">
+                        {% endif %}
+                        <h3 class="product-name">{{ product.name }}</h3>
+                        <p class="product-price">{{ product.price }} ₽</p>
+                        <!-- Если не используете подробности, можно убрать ссылку или заменить на кнопку добавления в корзину -->
+                        <!-- <a href="#" class="product-button">Добавить в корзину</a> -->
+                    </div>
+                {% empty %}
+                    <p>Товары не найдены.</p>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'users/base.html' %}
+
+{% block title %}Профиль - FamilyCart{% endblock %}
+
+{% block mainpage %}
+<div class="form-container">
+    <h2>Мой Профиль</h2>
+    <div class="profile-details">
+        <p><strong>Имя пользователя:</strong> {{ user.username }}</p>
+        <p><strong>Электронная почта:</strong> {{ user.email }}</p>
+        {% if user.profile.bio %}
+            <p><strong>О себе:</strong> {{ user.profile.bio }}</p>
+        {% endif %}
+        {% if user.profile.location %}
+            <p><strong>Местоположение:</strong> {{ user.profile.location }}</p>
+        {% endif %}
+        {% if user.profile.birth_date %}
+            <p><strong>Дата рождения:</strong> {{ user.profile.birth_date }}</p>
+        {% endif %}
+    </div>
+    <a href="{% url 'users:profile_edit' %}" class="btn">Редактировать профиль</a>
+</div>
+{% endblock %}

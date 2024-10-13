@@ -1,0 +1,50 @@
+<!-- products/templates/products/cart_list.html -->
+
+{% extends 'products/base.html' %}
+{% load static %}
+
+{% block mainpage %}
+    <h1>Ваши Корзины</h1>
+
+    <!-- Список корзин пользователя -->
+    <div class="user-carts">
+        {% if user_carts %}
+            <ul>
+                {% for cart in user_carts %}
+                    <li>
+                        <a href="{% url 'products:view_cart' cart_id=cart.id %}">{{ cart.name }}</a>
+                        - Участников: {{ cart.users.count }}
+                        <!-- Кнопка для отправки приглашения -->
+                        <a href="{% url 'products:send_invitation' cart_id=cart.id %}" class="btn btn-primary btn-sm">Пригласить пользователя</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>У вас пока нет корзин. <a href="{% url 'products:create_cart' %}">Создать корзину</a>.</p>
+        {% endif %}
+    </div>
+
+    <!-- Раздел неприёнятых приглашений -->
+    <div class="received-invitations">
+        <h2>Приглашения</h2>
+        {% if received_invitations %}
+            <ul>
+                {% for invitation in received_invitations %}
+                    <li>
+                        {{ invitation.from_user.username }} приглашает вас в корзину "{{ invitation.cart.name }}".
+                        <form action="{% url 'products:accept_invitation' invitation_id=invitation.id %}" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-success btn-sm">Принять</button>
+                        </form>
+                        <form action="{% url 'products:reject_invitation' invitation_id=invitation.id %}" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger btn-sm">Отклонить</button>
+                        </form>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Нет новых приглашений.</p>
+        {% endif %}
+    </div>
+{% endblock %}

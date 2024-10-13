@@ -1,0 +1,16 @@
+<!-- products/templates/products/send_invitation.html -->
+
+{% extends 'products/base.html' %}
+{% load static %}
+
+{% block mainpage %}
+    <h1>Пригласить пользователя в корзину "{{ cart.name }}"</h1>
+
+    <form method="post" class="send-invitation-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Отправить приглашение</button>
+    </form>
+
+    <a href="{% url 'products:cart_list' %}" class="btn btn-secondary">Назад к списку корзин</a>
+{% endblock %}

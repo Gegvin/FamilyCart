@@ -1,0 +1,12 @@
+
+{% extends 'products/base.html' %}
+{% load static %}
+
+{% block mainpage %}
+    <h1>Создать новую корзину</h1>
+    <form method="post" class="create-cart-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Создать корзину</button>
+    </form>
+{% endblock %}

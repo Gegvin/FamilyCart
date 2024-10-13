@@ -1,0 +1,57 @@
+<!-- products/templates/products/cart.html -->
+
+{% extends 'products/base.html' %}
+{% load static %}
+
+{% block mainpage %}
+    <h1>Корзина: {{ cart.name }}</h1>
+    <p>Создана: {{ cart.created_at }}</p>
+    <p>Участники:</p>
+    <ul>
+        {% for user in cart.users.all %}
+            <li>{{ user.username }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Товары в корзине</h2>
+    {% if cart_items %}
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Товар</th>
+                    <th>Цена за единицу</th>
+                    <th>Количество</th>
+                    <th>Стоимость</th>
+                    <th>Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cart_items %}
+                    <tr>
+                        <td>{{ item.product.name }}</td>
+                        <td>{{ item.product.price }} ₽</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>{{ item.get_cost }} ₽</td>
+                        <td>
+                            <form action="{% url 'products:remove_from_cart' cart.id item.id %}" method="post" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn-remove">Удалить</button>
+                            </form>
+                            <form action="{% url 'products:update_cart' cart.id item.id %}" method="post" style="display:inline;">
+                                {% csrf_token %}
+                                <input type="number" name="quantity" value="{{ item.quantity }}" min="1" required>
+                                <button type="submit" class="btn-update">Обновить</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <p><strong>Общая стоимость: {{ cart.get_total_cost }} ₽</strong></p>
+    {% else %}
+        <p>В корзине пока нет товаров.</p>
+    {% endif %}
+
+    <!-- Кнопка для продолжения покупок -->
+    <a href="{% url 'products:catalog' %}" class="btn btn-secondary">Продолжить покупки</a>
+{% endblock %}

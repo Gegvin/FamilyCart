@@ -11,7 +11,7 @@
             <ul>
                 {% for category in categories %}
                     <li>
-                        <a href="{% url 'catalog' %}?category={{ category.id }}">
+                        <a href="{% url 'products:catalog' %}?category={{ category.id }}">
                             {{ category.name }}
                         </a>
                     </li>
@@ -32,8 +32,33 @@
                         {% endif %}
                         <h3 class="product-name">{{ product.name }}</h3>
                         <p class="product-price">{{ product.price }} ₽</p>
-                        <!-- Если не используете подробности, можно убрать ссылку или заменить на кнопку добавления в корзину -->
-                        <!-- <a href="#" class="product-button">Добавить в корзину</a> -->
+
+                        {% if product.available %}
+                            {% if carts %}
+                                <form action="{% url 'products:add_to_cart' %}" method="post" class="add-to-cart-form">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="product_id" value="{{ product.id }}">
+                                    <div class="form-group">
+                                        <label for="cart_select_{{ product.id }}">Выберите корзину:</label>
+                                        <select name="cart_id" id="cart_select_{{ product.id }}" class="form-control" required>
+                                            <option value="" disabled selected>-- Выберите корзину --</option>
+                                            {% for cart in carts %}
+                                                <option value="{{ cart.id }}">{{ cart.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="quantity_{{ product.id }}">Количество:</label>
+                                        <input type="number" name="quantity" id="quantity_{{ product.id }}" value="1" min="1" class="form-control" required>
+                                    </div>
+                                    <button type="submit" class="btn-add">Добавить в корзину</button>
+                                </form>
+                            {% else %}
+                                <p>У вас нет доступных корзин. <a href="{% url 'products:create_cart' %}">Создать корзину</a>.</p>
+                            {% endif %}
+                        {% else %}
+                            <p>Нет в наличии</p>
+                        {% endif %}
                     </div>
                 {% empty %}
                     <p>Товары не найдены.</p>

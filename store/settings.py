@@ -83,7 +83,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'familycart_db',            # Имя вашей базы данных
         'USER': 'familycart_user',          # Имя пользователя
-        'PASSWORD': '000420q', # Пароль пользователя
+        'PASSWORD': '000420q',              # Пароль пользователя
         'HOST': 'localhost',                # Хост базы данных
         'PORT': '5432',                     # Порт PostgreSQL (по умолчанию 5432)
     }

@@ -25,15 +25,21 @@
             <div class="products-grid">
                 {% for product in products %}
                     <div class="product-card">
-                        {% if product.image %}
-                            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
-                        {% else %}
-                            <img src="{% static 'images/no-image.png' %}" alt="Нет изображения" class="product-image">
-                        {% endif %}
+                        <div class="product-image-container">
+                            {% if product.image %}
+                                <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
+                            {% else %}
+                                <img src="{% static 'images/no-image.png' %}" alt="Нет изображения" class="product-image">
+                            {% endif %}
+                            <!-- Блок с описанием, скрыт по умолчанию -->
+                            <div class="product-description">
+                                <p>{{ product.description }}</p>
+                            </div>
+                        </div>
                         <h3 class="product-name">{{ product.name }}</h3>
                         <p class="product-price">{{ product.price }} ₽</p>
 
-                        {% if product.available %}
+                        {% if product.available and product.quantity > 0 %}
                             {% if carts %}
                                 <form action="{% url 'products:add_to_cart' %}" method="post" class="add-to-cart-form">
                                     {% csrf_token %}
@@ -41,21 +47,23 @@
                                     <div class="form-group">
                                         <label for="cart_select_{{ product.id }}">Выберите корзину:</label>
                                         <select name="cart_id" id="cart_select_{{ product.id }}" class="form-control" required>
-                                            <option value="" disabled selected>-- Выберите корзину --</option>
+                                            <option value="" disabled selected>  - Выберите корзину  </option>
                                             {% for cart in carts %}
                                                 <option value="{{ cart.id }}">{{ cart.name }}</option>
                                             {% endfor %}
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="quantity_{{ product.id }}">Количество:</label>
-                                        <input type="number" name="quantity" id="quantity_{{ product.id }}" value="1" min="1" class="form-control" required>
+                                        <label for="quantity_{{ product.id }}">На складе ({{ product.quantity }}):</label>
+                                        <input type="number" name="quantity" id="quantity_{{ product.id }}" value="1" min="1" max="{{ product.quantity }}" class="form-control" required>
                                     </div>
                                     <button type="submit" class="btn-add">Добавить в корзину</button>
                                 </form>
                             {% else %}
                                 <p>У вас нет доступных корзин. <a href="{% url 'products:create_cart' %}">Создать корзину</a>.</p>
                             {% endif %}
+                        {% elif product.quantity == 0 %}
+                            <p>Товар закончился на складе.</p>
                         {% else %}
                             <p>Нет в наличии</p>
                         {% endif %}

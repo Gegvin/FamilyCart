@@ -45,7 +45,7 @@
                     <div class="dropdown-content">
                         <a href="{% url 'users:profile' %}">Профиль</a>
                         <a href="{% url 'products:cart_list' %}">Корзины</a>
-                        <a href="#">Заказы</a>
+                        <a href="{% url 'products:order_list' %}">Заказы</a>
                         <a href="{% url 'users:logout' %}">Выйти</a>
                     </div>
                 </div>

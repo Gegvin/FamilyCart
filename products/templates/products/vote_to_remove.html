@@ -1,0 +1,23 @@
+<!-- products/templates/products/vote_to_remove.html -->
+
+{% extends 'products/base.html' %}
+{% load static %}
+
+{% block mainpage %}
+    <div class="vote-container">
+        <h1 class="page-title">Голосование за удаление товара "{{ cart_item.product.name }}"</h1>
+        <p class="vote-info">Общая стоимость корзины превышает установленный бюджет.</p>
+        <form method="post" class="vote-form">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.vote.label_tag }}
+                {{ form.vote }}
+                {% if form.vote.errors %}
+                    <div class="error-message">{{ form.vote.errors }}</div>
+                {% endif %}
+            </div>
+            <button type="submit" class="btn vote-against-btn">Проголосовать "Против"</button>
+        </form>
+        <a href="{% url 'products:view_cart' cart_id=cart.id %}" class="btn back-to-cart-btn">Назад к корзине</a>
+    </div>
+{% endblock %}

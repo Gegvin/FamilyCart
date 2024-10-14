@@ -1,0 +1,18 @@
+<!-- products/templates/products/payment_status.html -->
+
+{% extends 'products/base.html' %}
+{% load static %}
+
+{% block mainpage %}
+    <h1>Статус Оплаты для Корзины: {{ cart.name }}</h1>
+
+    <p>Адрес доставки: {{ payment.address }}</p>
+
+    {% if payment.completed %}
+        <p style="color: green;"><strong>Оплата успешно завершена!</strong></p>
+    {% else %}
+        <p>Ожидание подтверждения оплаты от всех участников.</p>
+    {% endif %}
+
+    <a href="{% url 'products:view_cart' cart.id %}" class="btn btn-secondary">Назад к Корзине</a>
+{% endblock %}

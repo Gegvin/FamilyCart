@@ -1,0 +1,22 @@
+<!-- products/templates/products/assign_payment.html -->
+
+{% extends 'products/base.html' %}
+{% load static %}
+
+{% block mainpage %}
+    <div class="assign-payment-container">
+        <h1 class="page-title">Назначить оплату для товара "{{ cart_item.product.name }}"</h1>
+        <form method="post" class="assign-payment-form">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.paid_by.label_tag }}
+                {{ form.paid_by }}
+                {% if form.paid_by.errors %}
+                    <div class="error-message">{{ form.paid_by.errors }}</div>
+                {% endif %}
+            </div>
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+        </form>
+        <a href="{% url 'products:view_cart' cart_id=cart.id %}" class="btn btn-secondary">Назад к корзине</a>
+    </div>
+{% endblock %}

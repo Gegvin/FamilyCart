@@ -1,0 +1,27 @@
+<!-- products/templates/products/confirm_payment.html -->
+
+{% extends 'products/base.html' %}
+{% load static %}
+
+{% block mainpage %}
+    <h1>Подтверждение оплаты для корзины "{{ cart.name }}"</h1>
+
+    <p><strong>Адрес доставки:</strong> {{ cart.address }}</p>
+
+    <p><strong>Подтверждения оплаты:</strong> {{ confirmed_payments }} из {{ total_users }}</p>
+
+    {% if not user_confirmed %}
+        <form method="post" class="confirm-payment-form">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success">Подтвердить оплату</button>
+        </form>
+    {% else %}
+        <p>Вы уже подтвердили оплату.</p>
+    {% endif %}
+
+    <p>
+        <a href="{% url 'products:view_cart' cart_id=cart.id %}" class="btn btn-secondary">Назад к корзине</a>
+    </p>
+
+
+{% endblock %}

@@ -1,0 +1,22 @@
+<!-- products/templates/products/enter_address.html -->
+
+{% extends 'products/base.html' %}
+{% load static %}
+
+{% block mainpage %}
+    <div class="enter-address-container">
+        <h1 class="page-title">Введите адрес доставки для корзины "{{ cart.name }}"</h1>
+        <form method="post" class="enter-address-form">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.address.label_tag }}
+                {{ form.address }}
+                {% if form.address.errors %}
+                    <div class="error-message">{{ form.address.errors }}</div>
+                {% endif %}
+            </div>
+            <button type="submit" class="btn btn-primary">Сохранить адрес</button>
+        </form>
+        <a href="{% url 'products:view_cart' cart_id=cart.id %}" class="btn btn-secondary">Назад к корзине</a>
+    </div>
+{% endblock %}

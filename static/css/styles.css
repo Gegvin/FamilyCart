@@ -819,3 +819,1018 @@ footer {
     margin-top: 5px;
 }
 
+/* static/css/styles.css */
+
+/* Общие стили для каталога */
+.catalog-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.categories-sidebar {
+    width: 200px;
+    padding: 20px;
+    border-right: 1px solid #ddd;
+    box-sizing: border-box;
+}
+
+.products-section {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.products-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.product-card {
+    width: 200px;
+    position: relative;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #fff;
+    overflow: hidden; /* Предотвращает выход содержимого за границы карточки */
+    transition: box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.product-image-container {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.product-image-container:hover .product-image {
+    transform: scale(1.1); /* Увеличение изображения при наведении */
+}
+
+.product-description {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transform: translateY(20px); /* Сдвиг описания вниз */
+}
+
+.product-image-container:hover .product-description {
+    opacity: 1;
+    transform: translateY(0); /* Возвращение описания на место */
+}
+
+.btn-add {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-add:hover {
+    background-color: #218838;
+}
+
+/* Стилизация выпадающего списка "Выберите корзину" */
+.add-to-cart-form select.form-control {
+    width: 100%;
+    padding: 8px 40px 8px 12px; /* Добавляем отступ справа для стрелки */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='none' stroke='%23333' stroke-width='2' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M6 9l6 6 6-6'/></svg>");
+    background-repeat: no-repeat;
+    background-position: calc(100% - 10px) center; /* Позиционирование стрелки */
+    background-size: 1em; /* Размер стрелки */
+    appearance: none;
+    -webkit-appearance: none; /* Для Safari и Chrome */
+    -moz-appearance: none; /* Для Firefox */
+    cursor: pointer;
+    font-size: 12px;
+    transition: border-color 0.3s ease;
+}
+
+/* Удаление стандартной стрелки для IE10 */
+.add-to-cart-form select.form-control::-ms-expand {
+    display: none;
+}
+
+/* Изменение цвета границы при фокусе */
+.add-to-cart-form select.form-control:focus {
+    border-color: #66afe9;
+    outline: none;
+}
+
+/* Дополнительные стили для формы */
+.add-to-cart-form .form-group {
+    margin-bottom: 10px;
+}
+
+.add-to-cart-form .form-control {
+    box-sizing: border-box;
+}
+
+/* static/css/styles.css */
+
+/* Общие стили для страницы */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+.cart-list-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    color: #333333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+a {
+    color: #28a745; /* Изменение цвета ссылок на зелёный */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Стили для списка корзин пользователя */
+.user-carts, .received-invitations {
+    margin-bottom: 30px;
+}
+
+.cart-list, .invitation-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cart-item, .invitation-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    background-color: #fafafa;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cart-item:hover, .invitation-item:hover {
+    background-color: #e6ffe6; /* Лёгкий зелёный фон при наведении */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.cart-info, .invitation-text {
+    flex: 1;
+}
+
+.cart-name {
+    font-size: 18px;
+    color: #28a745; /* Цвет названий корзин */
+    text-decoration: none;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
+.cart-name:hover {
+    text-decoration: underline;
+}
+
+.cart-members {
+    font-size: 14px;
+    color: #555555;
+}
+
+.cart-actions, .invitation-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* Базовые стили для кнопок */
+.btn {
+    padding: 6px 12px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    color: #ffffff; /* Белый текст для всех кнопок */
+}
+
+/* Кастомные классы кнопок с зелёным цветом */
+.btn-primary, .btn-success, .btn-danger, .create-cart-btn, .btn-add, .invite-btn, .accept-btn, .reject-btn {
+    background-color: #28a745; /* Основной зелёный цвет */
+}
+
+.btn-primary:hover, .btn-success:hover, .btn-danger:hover, .create-cart-btn:hover, .btn-add:hover, .invite-btn:hover, .accept-btn:hover, .reject-btn:hover {
+    background-color: #218838; /* Более тёмный зелёный при наведении */
+    transform: translateY(-2px); /* Лёгкое поднятие кнопки */
+}
+
+/* Специфические стили для кнопок */
+.btn-add {
+    /* Если нужны дополнительные стили, можно добавить здесь */
+}
+
+.invite-btn {
+    /* Если нужны дополнительные стили, можно добавить здесь */
+}
+
+.accept-btn {
+    /* Если нужны дополнительные стили, можно добавить здесь */
+}
+
+.reject-btn {
+    /* Если нужны дополнительные стили, можно добавить здесь */
+}
+
+.create-cart-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    display: inline-block;
+    border-radius: 4px;
+}
+
+/* Стилизация форм */
+.invitation-form {
+    display: inline-block;
+}
+
+@media (max-width: 600px) {
+    .cart-item, .invitation-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .cart-actions, .invitation-actions {
+        margin-top: 10px;
+    }
+
+    .cart-name {
+        font-size: 20px;
+    }
+}
+
+/* Дополнительные стили */
+.btn {
+    /* Общие стили уже определены выше */
+}
+
+/* Стилизация ссылок-кнопок */
+.btn-primary, .btn-success, .btn-danger, .create-cart-btn, .btn-add, .invite-btn, .accept-btn, .reject-btn {
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-primary:focus, .btn-success:focus, .btn-danger:focus, .create-cart-btn:focus, .btn-add:focus, .invite-btn:focus, .accept-btn:focus, .reject-btn:focus, .cart-name:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.5); /* Тень для фокуса */
+}
+
+/* static/css/styles.css */
+
+/* Общие стили для страницы */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+.cart-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.cart-title {
+    text-align: center;
+    color: #333333;
+    margin-bottom: 10px;
+}
+
+.cart-info {
+    text-align: center;
+    color: #555555;
+    margin-bottom: 20px;
+}
+
+.cart-members {
+    margin-bottom: 30px;
+}
+
+.cart-members h2 {
+    color: #333333;
+    margin-bottom: 10px;
+}
+
+.members-list {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.member-item {
+    margin-bottom: 5px;
+    color: #555555;
+}
+
+.cart-finances {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.cart-finances h2, .cart-finances h3 {
+    color: #333333;
+    margin-bottom: 10px;
+}
+
+.cost {
+    font-weight: bold;
+}
+
+.cost.exceeded {
+    color: #dc3545; /* Красный цвет при превышении бюджета */
+}
+
+.budget-warning {
+    color: #dc3545;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.cart-items {
+    margin-bottom: 30px;
+}
+
+.cart-items h2 {
+    color: #333333;
+    margin-bottom: 15px;
+}
+
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.cart-table th, .cart-table td {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 12px;
+}
+
+.cart-table th {
+    background-color: #28a745;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.cart-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.cart-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.unassigned {
+    color: #777777;
+    font-style: italic;
+}
+
+.action-form {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.update-form {
+    margin-right: 5px;
+}
+
+.quantity-input {
+    width: 60px;
+    display: inline-block;
+    margin-right: 5px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.vote-info {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #555555;
+}
+
+.vote-result {
+    display: block;
+    color: #dc3545;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.no-items {
+    text-align: center;
+    color: #555555;
+    font-style: italic;
+}
+
+.cart-actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 8px 16px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    color: #ffffff; /* Белый текст для всех кнопок */
+}
+
+.btn:hover {
+    background-color: #218838; /* Более тёмный зелёный при наведении */
+    transform: translateY(-2px); /* Лёгкое поднятие кнопки */
+}
+
+.btn-primary {
+    background-color: #28a745;
+}
+
+.btn-danger {
+    background-color: #28a745; /* Изменяем на желаемый зелёный */
+}
+
+.btn-success {
+    background-color: #28a745;
+}
+
+.btn-secondary {
+    background-color: #28a745;
+}
+
+.btn-warning {
+    background-color: #28a745;
+}
+
+.btn-sm {
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 3px;
+}
+
+.create-cart-btn {
+    font-size: 16px;
+    padding: 10px 20px;
+}
+
+.payment-completed {
+    color: #28a745;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* static/css/styles.css */
+
+/* Общие стили для страницы */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+.enter-address-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.page-title {
+    text-align: center;
+    color: #333333;
+    margin-bottom: 20px;
+}
+
+.enter-address-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555555;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color: #28a745;
+    outline: none;
+}
+
+.error-message {
+    margin-top: 5px;
+    color: #dc3545;
+    font-size: 13px;
+}
+
+.btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    color: #ffffff; /* Белый текст для всех кнопок */
+    margin-top: 10px;
+}
+
+.btn-primary {
+    background-color: #28a745;
+}
+
+.btn-primary:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: #28a745; /* Используем тот же зелёный цвет для согласованности */
+    margin-top: 20px; /* Отступ сверху для кнопки "Назад к корзине" */
+}
+
+.btn-secondary:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+/* Мобильная адаптивность */
+@media (max-width: 600px) {
+    .enter-address-container {
+        padding: 20px;
+        margin: 20px;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .btn-secondary {
+        margin-top: 10px;
+    }
+}
+
+/* static/css/styles.css */
+
+/* Общие стили для страницы */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+.vote-container {
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.page-title {
+    text-align: center;
+    color: #333333;
+    margin-bottom: 20px;
+}
+
+.vote-info {
+    text-align: center;
+    color: #555555;
+    margin-bottom: 30px;
+    font-size: 16px;
+}
+
+.vote-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333333;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #28a745;
+    outline: none;
+}
+
+.error-message {
+    margin-top: 5px;
+    color: #dc3545;
+    font-size: 14px;
+}
+
+.btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    color: #ffffff; /* Белый текст для всех кнопок */
+}
+
+.vote-against-btn {
+    background-color: #28a745; /* Основной зелёный цвет */
+}
+
+.vote-against-btn:hover {
+    background-color: #218838; /* Более тёмный зелёный при наведении */
+    transform: translateY(-2px); /* Лёгкое поднятие кнопки */
+}
+
+.back-to-cart-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background-color: #28a745; /* Основной зелёный цвет */
+    margin-top: 20px;
+}
+
+.back-to-cart-btn:hover {
+    background-color: #218838; /* Более тёмный зелёный при наведении */
+    transform: translateY(-2px); /* Лёгкое поднятие кнопки */
+}
+
+/* Мобильная адаптивность */
+@media (max-width: 600px) {
+    .vote-container {
+        padding: 20px;
+        margin: 30px 10px;
+    }
+
+    .btn {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    .page-title {
+        font-size: 24px;
+    }
+
+    .vote-info {
+        font-size: 14px;
+    }
+}
+
+/* static/css/styles.css */
+
+/* Общие стили для страницы */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+.update-budget-container {
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 30px 40px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.page-title {
+    text-align: center;
+    color: #333333;
+    margin-bottom: 25px;
+}
+
+.update-budget-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333333;
+    font-size: 16px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #28a745;
+    outline: none;
+    box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+}
+
+.error-message {
+    margin-top: 5px;
+    color: #dc3545;
+    font-size: 14px;
+}
+
+.btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    color: #ffffff; /* Белый текст для всех кнопок */
+}
+
+.btn-primary {
+    background-color: #28a745; /* Основной зелёный цвет */
+}
+
+.btn-primary:hover {
+    background-color: #218838; /* Более тёмный зелёный при наведении */
+    transform: translateY(-2px); /* Лёгкое поднятие кнопки */
+}
+
+.btn-secondary {
+    background-color: #28a745; /* Зелёный цвет для второй кнопки */
+}
+
+.btn-secondary:hover {
+    background-color: #218838; /* Более тёмный зелёный при наведении */
+    transform: translateY(-2px); /* Лёгкое поднятие кнопки */
+}
+
+.btn-secondary {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+    .update-budget-container {
+        padding: 20px;
+        margin: 30px 10px;
+    }
+
+    .btn {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    .page-title {
+        font-size: 24px;
+    }
+
+    .form-group label {
+        font-size: 14px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        font-size: 14px;
+    }
+}
+
+/* static/css/styles.css */
+
+/* Общие стили для страницы */
+body {
+    font-family: 'Roboto', sans-serif; /* Используем кастомный шрифт */
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+.assign-payment-container {
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 30px 40px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.page-title {
+    text-align: center;
+    color: #333333;
+    margin-bottom: 25px;
+    font-size: 24px;
+}
+
+.assign-payment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333333;
+    font-size: 16px;
+}
+
+.form-group select, /* Предполагается, что поле `paid_by` — это select */
+.form-group input,
+.form-group textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group select:focus,
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #28a745;
+    outline: none;
+    box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+}
+
+.error-message {
+    margin-top: 5px;
+    color: #dc3545;
+    font-size: 14px;
+}
+
+.btn {
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    color: #ffffff; /* Белый текст для всех кнопок */
+}
+
+.btn-primary {
+    background-color: #28a745; /* Основной зелёный цвет */
+}
+
+.btn-primary:hover {
+    background-color: #218838; /* Более тёмный зелёный при наведении */
+    transform: translateY(-2px); /* Лёгкое поднятие кнопки */
+}
+
+.btn-secondary {
+    background-color: #28a745; /* Зелёный цвет для второй кнопки */
+    width: 100%;
+    display: block;
+    margin-top: 20px;
+}
+
+.btn-secondary:hover {
+    background-color: #218838; /* Более тёмный зелёный при наведении */
+    transform: translateY(-2px); /* Лёгкое поднятие кнопки */
+}
+
+/* Мобильная адаптивность */
+@media (max-width: 600px) {
+    .assign-payment-container {
+        padding: 20px;
+        margin: 30px 10px;
+    }
+
+    .btn {
+        font-size: 14px;
+        padding: 10px 18px;
+    }
+
+    .page-title {
+        font-size: 20px;
+    }
+
+    .form-group label {
+        font-size: 14px;
+    }
+
+    .form-group select,
+    .form-group input,
+    .form-group textarea {
+        font-size: 14px;
+    }
+}

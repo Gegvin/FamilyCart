@@ -1,0 +1,24 @@
+<!-- products/templates/products/payment.html -->
+
+{% extends 'products/base.html' %}
+{% load static %}
+
+{% block mainpage %}
+    <h1>Оплата Корзины: {{ cart.name }}</h1>
+
+    <h2>Адрес Доставки:</h2>
+    <p>{{ payment.address }}</p>
+
+    {% if not user_confirmed %}
+        <h3>Подтвердите Оплату</h3>
+        <form method="post" class="confirm-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-success">Подтвердить Оплату</button>
+        </form>
+    {% else %}
+        <p style="color: green;"><strong>Вы уже подтвердили оплату.</strong></p>
+    {% endif %}
+
+    <a href="{% url 'products:view_cart' cart.id %}" class="btn btn-secondary">Назад к Корзине</a>
+{% endblock %}

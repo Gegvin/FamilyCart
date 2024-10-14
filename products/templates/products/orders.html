@@ -1,0 +1,22 @@
+<!-- products/templates/products/orders.html -->
+
+{% extends 'products/base.html' %}
+{% load static %}
+
+{% block mainpage %}
+    <h1>Мои заказы</h1>
+
+    {% if orders %}
+        <ul class="orders-list">
+            {% for order in orders %}
+                <li>
+                    <a href="{% url 'products:order_detail' order.id %}">
+                        Заказ №{{ order.id }} от {{ order.created_at|date:"d.m.Y" }} - {{ order.total_cost }} ₽
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>У вас пока нет заказов.</p>
+    {% endif %}
+{% endblock %}

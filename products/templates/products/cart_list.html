@@ -4,47 +4,59 @@
 {% load static %}
 
 {% block mainpage %}
-    <h1>Ваши Корзины</h1>
+    <div class="cart-list-container">
+        <h1>Ваши Корзины</h1>
 
-    <!-- Список корзин пользователя -->
-    <div class="user-carts">
-        {% if user_carts %}
-            <ul>
-                {% for cart in user_carts %}
-                    <li>
-                        <a href="{% url 'products:view_cart' cart_id=cart.id %}">{{ cart.name }}</a>
-                        - Участников: {{ cart.users.count }}
-                        <!-- Кнопка для отправки приглашения -->
-                        <a href="{% url 'products:send_invitation' cart_id=cart.id %}" class="btn btn-primary btn-sm">Пригласить пользователя</a>
-                    </li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p>У вас пока нет корзин. <a href="{% url 'products:create_cart' %}">Создать корзину</a>.</p>
-        {% endif %}
-    </div>
+        <!-- Список корзин пользователя -->
+        <div class="user-carts">
+            {% if user_carts %}
+                <ul class="cart-list">
+                    {% for cart in user_carts %}
+                        <li class="cart-item">
+                            <div class="cart-info">
+                                <a href="{% url 'products:view_cart' cart_id=cart.id %}" class="cart-name">{{ cart.name }}</a>
+                                <span class="cart-members">Участников: {{ cart.users.count }}</span>
+                            </div>
+                            <div class="cart-actions">
+                                <a href="{% url 'products:send_invitation' cart_id=cart.id %}" class="btn invite-btn">Пригласить пользователя</a>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>У вас пока нет корзин. <a href="{% url 'products:create_cart' %}" class="btn create-cart-btn">Создать корзину</a>.</p>
+            {% endif %}
+        </div>
 
-    <!-- Раздел неприёнятых приглашений -->
-    <div class="received-invitations">
-        <h2>Приглашения</h2>
-        {% if received_invitations %}
-            <ul>
-                {% for invitation in received_invitations %}
-                    <li>
-                        {{ invitation.from_user.username }} приглашает вас в корзину "{{ invitation.cart.name }}".
-                        <form action="{% url 'products:accept_invitation' invitation_id=invitation.id %}" method="post" style="display:inline;">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-success btn-sm">Принять</button>
-                        </form>
-                        <form action="{% url 'products:reject_invitation' invitation_id=invitation.id %}" method="post" style="display:inline;">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-danger btn-sm">Отклонить</button>
-                        </form>
-                    </li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p>Нет новых приглашений.</p>
-        {% endif %}
+        <!-- Раздел неприёнятых приглашений -->
+        <div class="received-invitations">
+            <h2>Приглашения</h2>
+            {% if received_invitations %}
+                <ul class="invitation-list">
+                    {% for invitation in received_invitations %}
+                        <li class="invitation-item">
+                            <span class="invitation-text">{{ invitation.from_user.username }} приглашает вас в корзину "{{ invitation.cart.name }}".</span>
+                            <div class="invitation-actions">
+                                <form action="{% url 'products:accept_invitation' invitation_id=invitation.id %}" method="post" class="invitation-form">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn accept-btn">Принять</button>
+                                </form>
+                                <form action="{% url 'products:reject_invitation' invitation_id=invitation.id %}" method="post" class="invitation-form">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn reject-btn">Отклонить</button>
+                                </form>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>Нет новых приглашений.</p>
+            {% endif %}
+        </div>
+
+        <!-- Кнопка для создания новой корзины -->
+        <div class="create-cart-button">
+            <a href="{% url 'products:create_cart' %}" class="btn create-cart-btn">Создать новую корзину</a>
+        </div>
     </div>
 {% endblock %}

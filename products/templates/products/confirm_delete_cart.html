@@ -1,0 +1,15 @@
+<!-- products/templates/products/confirm_delete_cart.html -->
+
+{% extends 'products/base.html' %}
+{% load static %}
+
+{% block mainpage %}
+    <h1>Удаление Корзины: {{ cart.name }}</h1>
+    <p>Вы уверены, что хотите удалить эту корзину?</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Удалить Корзину</button>
+        <a href="{% url 'products:view_cart' cart.id %}" class="btn btn-secondary">Отмена</a>
+    </form>
+{% endblock %}
